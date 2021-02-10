@@ -9,8 +9,8 @@ const app = express();
 dotenv.config();
 // require('dotenv').config();
 app.use(morgan('dev'));
-app.use(cors());
 app.use(express.json());
+app.use(cors());
 
 //database mongoose connect
 mongoose.connect(process.env.DATABASE, { useUnifiedTopology: true }).then(() => console.log('Database connected')).catch(err => console.log('Database Error: ', err));
