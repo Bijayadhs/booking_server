@@ -30,8 +30,8 @@ export const login = async (req, res) => {
         if (!user) return res.status(400).send('No Email Exist');
         // Compare Password
         user.comparePassword(password, function (err, match) {
-            console.log('Login Error')
-            if (!match || err) return res.status(400).send('Login Failed');
+            console.log(match, err)
+            if (!match || err) return res.status(400).send('Wrong Password');
             // generate token
             let token = jwt.sign({ _id: user._id }, process.env.JWT_TOKEN, { expiresIn: '7d' })
             res.json({
