@@ -13,7 +13,8 @@ app.use(express.json());
 app.use(cors());
 
 //database mongoose connect
-mongoose.connect(process.env.DATABASE, { useUnifiedTopology: true }).then(() => console.log('Database connected')).catch(err => console.log('Database Error: ', err));
+mongoose.connect(process.env.DATABASE, { useUnifiedTopology: true, useNewUrlParser: true, useFindAndModify: false, useCreateIndex: true, useUnifiedTopology: true })
+    .then(() => console.log('Database connected')).catch(err => console.log('Database Error: ', err));
 
 //routes middleware
 readdirSync('./routes').map((r) => app.use('/api', require(`./routes/${r}`)));
